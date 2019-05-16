@@ -1,17 +1,1 @@
-{
-  "scripts": [
-    "lib/three.js",
-    "lib/util.js",
-    "lib/text.js",
-    "lib/cube.js",
-    "lib/speech.js",
-    "index.js"
-  ],
-  "resources": [
-    "data/creditDensity.csv",
-    "assets/disc.png",
-    "assets/helvetiker_regular.typeface.json"
-  ],
-  "name": "Credit Box",
-  "XsrFileName": "credit-box.json"
-}
+{"scripts":["lib/three.js","lib/util.js","lib/text.js","lib/cube.js","lib/speech.js","index.js"],"resources":["data/creditdensity.csv","assets/disc.png","assets/helvetiker_regular.typeface.json"],"name":"Credit Box","XsrFileName":"credit-box.json"}
