@@ -14,7 +14,11 @@ roundTo <- function(x,base){
 }
 
 creditDensity <- acq %>%
-  filter(ORIG_DTE >= '2017-01-01') %>%
+  filter(
+    ORIG_DTE >= '2017-01-01',
+    !is.na(DTI),
+    !is.na(CSCORE_B)
+  ) %>%
   mutate(DTI = roundTo(DTI, 2), FICO = roundTo(CSCORE_B, 5)) %>%
   group_by(ORIG_DTE, DTI, FICO) %>%
   count %>%
@@ -22,13 +26,21 @@ creditDensity <- acq %>%
   mutate(Percent = 100*n / sum(n)) %>%
   filter(round(Percent, 2) > 0)
 
+test <- creditDensity %>% 
+  filter(is.nan(FICO))
+
 hcl <- colorspace::heat_hcl(round(100*max(creditDensity$Percent)))
 creditDensity$color <- hcl[round(100*creditDensity$Percent)]
+
+greens <- sequential_hcl(n = 51, palette = 'Mint')
+reds <- sequential_hcl(n = 51, palette = 'Peach')
+creditDensity$greenDTI <- rev(greens)[round(creditDensity$DTI)+1]
+creditDensity$redDTI <- rev(reds)[round(creditDensity$DTI)+1]
 
 creditDensity %>%
   filter(ORIG_DTE == '2017-01-01') %>%
   ggplot(aes(DTI, FICO, color = Percent)) + geom_point()
 
 creditDensity %>%
-  select(`Origination Date` = ORIG_DTE, DTI, FICO, `Number of Loans` = n, color) %>%
+  select(`Origination Date` = ORIG_DTE, DTI, FICO, `Number of Loans` = n, color, greenDTI, redDTI) %>%
   write_csv("creditDensity.csv")

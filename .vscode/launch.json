@@ -1,1 +1,18 @@
-{"version":"0.2.0","configurations":[{"name":"Debug in HoloJs","type":"node","request":"launch","cwd":"${workspaceFolder}","runtimeExecutable":"C:\\Users\\Adeel\\Downloads\\spin\\spin.exe","runtimeArgs":["run","--path","credit-box.json","--debug"],"port":9229,"protocol":"inspector"}]}
+{
+    "version":"0.2.0",
+    "configurations":[{
+        "name":"Debug in HoloJs",
+        "type":"node",
+        "request":"launch",
+        "cwd":"${workspaceFolder}",
+        "runtimeExecutable":"C:\\Users\\Jelly\\Documents\\spin\\spin.exe",
+        "runtimeArgs":[
+            "run",
+            "--path",
+            "credit-box.json",
+            "--debug"
+        ],
+        "port":9229,
+        "protocol":"inspector"
+    }]
+}
